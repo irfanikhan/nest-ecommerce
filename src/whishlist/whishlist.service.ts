@@ -5,6 +5,7 @@ import { UpdateWhishlistDto } from './dto/update-whishlist.dto';
 @Injectable()
 export class WhishlistService {
   create(createWhishlistDto: CreateWhishlistDto) {
+    console.log(createWhishlistDto);
     return 'This action adds a new whishlist';
   }
 
@@ -17,6 +18,7 @@ export class WhishlistService {
   }
 
   update(id: number, updateWhishlistDto: UpdateWhishlistDto) {
+    console.log(updateWhishlistDto);
     return `This action updates a #${id} whishlist`;
   }
 

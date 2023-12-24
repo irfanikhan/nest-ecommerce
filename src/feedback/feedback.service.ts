@@ -5,6 +5,7 @@ import { UpdateFeedbackDto } from './dto/update-feedback.dto';
 @Injectable()
 export class FeedbackService {
   create(createFeedbackDto: CreateFeedbackDto) {
+    console.log(createFeedbackDto);
     return 'This action adds a new feedback';
   }
 
@@ -17,6 +18,7 @@ export class FeedbackService {
   }
 
   update(id: number, updateFeedbackDto: UpdateFeedbackDto) {
+    console.log(updateFeedbackDto);
     return `This action updates a #${id} feedback`;
   }
 

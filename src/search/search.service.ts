@@ -5,6 +5,7 @@ import { UpdateSearchDto } from './dto/update-search.dto';
 @Injectable()
 export class SearchService {
   create(createSearchDto: CreateSearchDto) {
+    console.log(createSearchDto);
     return 'This action adds a new search';
   }
 
@@ -17,6 +18,7 @@ export class SearchService {
   }
 
   update(id: number, updateSearchDto: UpdateSearchDto) {
+    console.log(updateSearchDto);
     return `This action updates a #${id} search`;
   }
 

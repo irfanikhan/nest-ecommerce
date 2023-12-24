@@ -5,6 +5,7 @@ import { UpdateRefundDto } from './dto/update-refund.dto';
 @Injectable()
 export class RefundService {
   create(createRefundDto: CreateRefundDto) {
+    console.log(createRefundDto);
     return 'This action adds a new refund';
   }
 
@@ -17,6 +18,7 @@ export class RefundService {
   }
 
   update(id: number, updateRefundDto: UpdateRefundDto) {
+    console.log(updateRefundDto);
     return `This action updates a #${id} refund`;
   }
 
