@@ -12,6 +12,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { OpeningHours } from './opening-hours.entity';
 
 @Entity()
 export class Store {
@@ -33,7 +34,7 @@ export class Store {
   @ManyToMany(() => Category)
   categories: Category[];
 
-  @ManyToOne(() => Address, { nullable: true })
+  @ManyToOne(() => Address, { cascade: true, nullable: true })
   address: Address;
 
   @Column({ nullable: true })
@@ -42,8 +43,10 @@ export class Store {
   @Column({ nullable: true })
   contactPhone: string;
 
-  @Column({ nullable: true })
-  openningHours: string;
+  @OneToMany(() => OpeningHours, (openingHours) => openingHours.store, {
+    cascade: true,
+  })
+  openingHours: OpeningHours[];
 
   @Column({ nullable: true })
   website: string;
