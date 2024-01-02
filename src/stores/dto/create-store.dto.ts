@@ -29,7 +29,7 @@ export class CreateStoreDto {
   @IsObject()
   address: AddressDto;
 
-  @ValidateNested({ each: true })
+  @ValidateNested()
   @Type(() => OpeningHoursDto)
   @IsArray()
   openingHours: OpeningHoursDto[];
@@ -37,8 +37,9 @@ export class CreateStoreDto {
   @IsString()
   website: string;
 
-  @IsArray({ each: true })
-  socialMediaLinks: string[];
+  @IsArray()
+  @IsOptional()
+  socialMediaLinks?: string[];
 
   @IsBoolean()
   isActive: boolean;

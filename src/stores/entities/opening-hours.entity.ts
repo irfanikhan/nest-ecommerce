@@ -1,6 +1,7 @@
-import { Column, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Store } from './store.entity';
 
+@Entity()
 export class OpeningHours {
   @PrimaryGeneratedColumn()
   id: number;

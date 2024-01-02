@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateStoreDto } from './dto/create-store.dto';
 import { UpdateStoreDto } from './dto/update-store.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -45,19 +45,24 @@ export class StoresService {
   }
 
   findAll() {
-    return `This action returns all stores`;
+    return this.storeRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} store`;
+  async findOne(id: number) {
+    const store = await this.storeRepository.findOneBy({ id });
+
+    if (!store) throw new NotFoundException('Store not found');
   }
 
-  update(id: number, updateStoreDto: UpdateStoreDto) {
-    console.log(updateStoreDto);
-    return `This action updates a #${id} store`;
+  async update(id: number, updateStoreDto: UpdateStoreDto) {
+    await this.findOne(id);
+
+    return this.storeRepository.save(updateStoreDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} store`;
+  async remove(id: number) {
+    await this.findOne(id);
+
+    return this.storeRepository.delete(id);
   }
 }

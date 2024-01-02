@@ -2,6 +2,7 @@ import { UserProfile } from 'src/users/entities/user-profile.entity';
 import {
   Column,
   CreateDateColumn,
+  Entity,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -9,6 +10,7 @@ import {
 } from 'typeorm';
 import { OrderItem } from './order-item.entity';
 
+@Entity()
 export class Order {
   @PrimaryGeneratedColumn()
   id: number;

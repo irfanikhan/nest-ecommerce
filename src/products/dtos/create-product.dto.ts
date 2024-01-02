@@ -1,6 +1,4 @@
 import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator';
-import { Category } from 'src/categories/entities/category.entity';
-import { JoinColumn, ManyToOne } from 'typeorm';
 
 export class CreateProductDto {
   @IsString()
@@ -8,7 +6,7 @@ export class CreateProductDto {
 
   @IsString()
   @IsOptional()
-  description: string;
+  description?: string;
 
   @IsString()
   sku: string;
@@ -24,7 +22,7 @@ export class CreateProductDto {
 
   @IsString()
   @IsOptional()
-  brand: string;
+  brand?: string;
 
   @IsString()
   imageUrl: string;
@@ -35,7 +33,6 @@ export class CreateProductDto {
   @IsString()
   categoryId: string;
 
-  @ManyToOne(() => Category, (category) => category.products)
-  @JoinColumn({ name: 'categoryId' })
-  category: Category;
+  @IsString()
+  storeId: string;
 }
