@@ -1,17 +1,16 @@
 import { Address } from 'src/address/entities/address.entity';
-import { Category } from 'src/categories/entities/category.entity';
-import { Product } from 'src/products/entities/product.entity';
 import { UserProfile } from 'src/users/entities/user-profile.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
-  ManyToMany,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { OpeningHours } from './opening-hours.entity';
 
 @Entity()
 export class Store {
@@ -27,13 +26,7 @@ export class Store {
   @ManyToOne(() => UserProfile, (user) => user.stores)
   owner: UserProfile;
 
-  @OneToMany(() => Product, (product) => product.store)
-  products: Product[];
-
-  @ManyToMany(() => Category)
-  categories: Category[];
-
-  @ManyToOne(() => Address, { nullable: true })
+  @OneToOne(() => Address, { cascade: true, nullable: true })
   address: Address;
 
   @Column({ nullable: true })
@@ -42,13 +35,15 @@ export class Store {
   @Column({ nullable: true })
   contactPhone: string;
 
-  @Column({ nullable: true })
-  openningHours: string;
+  @OneToMany(() => OpeningHours, (openingHours) => openingHours.store, {
+    cascade: true,
+  })
+  openingHours: OpeningHours[];
 
   @Column({ nullable: true })
   website: string;
 
-  @Column({ nullable: true })
+  @Column('text', { array: true, nullable: true })
   socialMediaLinks: string[];
 
   @CreateDateColumn()

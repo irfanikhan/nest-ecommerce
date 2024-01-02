@@ -1,7 +1,14 @@
 import { Category } from 'src/categories/entities/category.entity';
 import { Store } from 'src/stores/entities/store.entity';
-import { Column, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
+@Entity()
 export class Product {
   @PrimaryGeneratedColumn()
   id: number;
@@ -33,7 +40,7 @@ export class Product {
   @Column()
   categoryId: string;
 
-  @ManyToOne(() => Category, (category) => category.products)
+  @ManyToOne(() => Category)
   @JoinColumn({ name: 'categoryId' })
   category: Category;
 
@@ -41,7 +48,7 @@ export class Product {
   @JoinColumn({ name: 'storeId' })
   storeId: string;
 
-  @ManyToOne(() => Store, (store) => store.products)
+  @ManyToOne(() => Store)
   store: Store;
 
   @Column({ default: true })

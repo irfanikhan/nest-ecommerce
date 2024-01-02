@@ -24,6 +24,13 @@ import { AuthModule } from './auth/auth.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { RefundModule } from './refund/refund.module';
 import { AddressModule } from './address/address.module';
+import { Address } from './address/entities/address.entity';
+import { Store } from './stores/entities/store.entity';
+import { OpeningHours } from './stores/entities/opening-hours.entity';
+import { Product } from './products/entities/product.entity';
+import { Category } from './categories/entities/category.entity';
+import { Order } from './orders/entities/order.entity';
+import { OrderItem } from './orders/entities/order-item.entity';
 
 @Module({
   imports: [
@@ -34,7 +41,18 @@ import { AddressModule } from './address/address.module';
       username: 'postgres',
       password: 'admin',
       database: 'ecommerce',
-      entities: [User, UserProfile, UserRole],
+      entities: [
+        User,
+        UserProfile,
+        UserRole,
+        Address,
+        Store,
+        OpeningHours,
+        Category,
+        Product,
+        Order,
+        OrderItem,
+      ],
       synchronize: true,
     }),
     UsersModule,
